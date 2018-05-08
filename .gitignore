@@ -1,2 +1,16 @@
 *.ipch
 *.pdb
+*.suo
+*.db
+*.db-shm
+*.db-wal
+/Binaries/*
+/Content/ParagonDekker/*
+/Content/ParagonPhase/*
+/Content/ParagonShinbi/*
+/Content/ParagonTwinBlast/*
+/Content/ParagonSerath/*
+/Content/ParagonMuriel/*
+/Content/ParagonGadget/*
+/Intermediate/*
+/Saved/*
