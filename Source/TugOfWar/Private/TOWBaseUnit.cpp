@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TOWBaseUnit.h"
-
+#include "TOWBuff.h"
 
 // Sets default values
 ATOWBaseUnit::ATOWBaseUnit()
@@ -61,5 +61,23 @@ UINT16 ATOWBaseUnit::ApplyDamage(ATOWBaseUnit* damageCauser, UINT16 damageValue,
 void ATOWBaseUnit::Death(ATOWBaseUnit* deathCauser)
 {
 
+}
+
+void ATOWBaseUnit::RunBuff()
+{
+	buffList.Remove(nullptr);
+	for (auto it : buffList)
+	{
+		if (!it->RunBuff(this))
+		{
+			it->RemoveBuff(this);
+			it = nullptr;
+		}
+	}
+}
+
+void ATOWBaseUnit::AddBuff(class UTOWBuff* buff)
+{
+	buffList.Add(buff);
 }
 

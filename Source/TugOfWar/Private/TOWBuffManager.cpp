@@ -3,12 +3,19 @@
 #include "TOWBuffManager.h"
 
 
-UTOWBuffManager::BuffFuncPtr UTOWBuffManager::GetRunBuffFunc(UINT8 key)
+UTOWBuffManager::BuffFunc UTOWBuffManager::GetRunBuffFunc(UINT8 key)
 {
 	return nullptr;
 }
-UTOWBuffManager::BuffFuncPtr UTOWBuffManager::GetRemoveBuffFunc(UINT8 key)
+UTOWBuffManager::BuffFunc UTOWBuffManager::GetRemoveBuffFunc(UINT8 key)
 {
 	return nullptr;
+}
+
+UTOWBuffManager* UTOWBuffManager::GetBuffManager()
+{
+
+	static UTOWBuffManager* instance = NewObject<UTOWBuffManager>();
+	return instance;
 }
 

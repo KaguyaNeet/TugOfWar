@@ -9,25 +9,26 @@ void UTOWBuff::InitBuff(EBuffType buffType_, UINT8 buffKey, UINT8 buffValue_, UI
 	buffType = buffType_;
 	buffLifeTime = buffLifeTime_;
 	buffValue = buffValue_;
-	//RunBuffFunc = 
+	RunBuffFuncPtr = UTOWBuffManager::GetBuffManager()->GetRunBuffFunc(buffKey);
+	RemoveBuffFuncPtr = UTOWBuffManager::GetBuffManager()->GetRemoveBuffFunc(buffKey);
 }
 
 bool UTOWBuff::RunBuff(ATOWBaseUnit* buffOwner)
 {
 	buffLifeTime--;
-	if (RunBuffFunc)
+	if (RunBuffFuncPtr)
 	{
 		if (EBuffType::EOnce == buffType)
 		{
 			if (!isDo)
 			{
 				isDo = true;
-				RunBuffFunc(buffValue, buffOwner);
+				RunBuffFuncPtr(buffValue, buffOwner);
 			}
 		}
 		else
 		{
-			RunBuffFunc(buffValue, buffOwner);
+			RunBuffFuncPtr(buffValue, buffOwner);
 		}
 	}
 
@@ -40,5 +41,5 @@ bool UTOWBuff::RunBuff(ATOWBaseUnit* buffOwner)
 
 void UTOWBuff::RemoveBuff(ATOWBaseUnit* buffOwner)
 {
-	RemoveBuffFunc(buffValue, buffOwner);
+	RemoveBuffFuncPtr(buffValue, buffOwner);
 }

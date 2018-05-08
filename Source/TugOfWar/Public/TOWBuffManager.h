@@ -15,8 +15,11 @@ class TUGOFWAR_API UTOWBuffManager : public UObject
 	GENERATED_BODY()
 	
 public:
-	using BuffFuncPtr = void(*)(UINT8 buffValue, class ATOWBaseUnit* buffOwner);
+	using BuffFunc = void(*)(UINT8 buffValue, class ATOWBaseUnit* buffOwner);
 
-	BuffFuncPtr GetRunBuffFunc(UINT8 key);
-	BuffFuncPtr GetRemoveBuffFunc(UINT8 key);
+	BuffFunc GetRunBuffFunc(UINT8 key);
+	BuffFunc GetRemoveBuffFunc(UINT8 key);
+	static UTOWBuffManager* GetBuffManager();
+
+private:
 };

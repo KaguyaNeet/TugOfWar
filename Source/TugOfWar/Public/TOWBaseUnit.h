@@ -71,8 +71,18 @@ public:
 	// Sets default values for this character's properties
 	ATOWBaseUnit();
 
+	/*
+	 * Add damage to this unit.
+	 * @param damageCauser. the damage's causer.
+	 * @param damageValue. the damage's base value.
+	 * @param damagePenetration. the damage's penetration.
+	 * @param damageType. the damage's type.
+	 **/
 	virtual UINT16 ApplyDamage(ATOWBaseUnit* damageCauser, UINT16 damageValue, UINT16 damagePenetration, ETOWDamageType damageType);
 	virtual void Death(ATOWBaseUnit* deathCauser);
+
+	void RunBuff();
+	void AddBuff(class UTOWBuff* buff);
 
 
 //Public value write here.
@@ -80,6 +90,11 @@ public:
 	//Unit base attribute
 	UPROPERTY(EditAnywhere, Category = "BaseAttributes")
 		FUnitBaseAttribute baseAttribute;
+
+//Private value write here.
+private:
+	UPROPERTY()
+		TArray<class UTOWBuff*> buffList;
 
 protected:
 	// Called when the game starts or when spawned
