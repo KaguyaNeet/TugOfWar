@@ -84,7 +84,6 @@ public:
 	void RunBuff();
 	void AddBuff(class UTOWBuff* buff);
 
-
 //Public value write here.
 public:
 	//Unit base attribute

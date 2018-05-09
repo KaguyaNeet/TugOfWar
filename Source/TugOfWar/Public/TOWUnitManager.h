@@ -23,6 +23,11 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void AddUnit(class ATOWBaseUnit*);
+	void RemoveUnit(class ATOWBaseUnit*);
+
+	static ATOWUnitManager* GetUnitManager(AActor* caller);
+
 	
 private:
 	float buffTickCounter = 0;

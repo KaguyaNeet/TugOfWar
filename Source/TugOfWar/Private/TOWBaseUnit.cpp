@@ -2,6 +2,7 @@
 
 #include "TOWBaseUnit.h"
 #include "TOWBuff.h"
+#include "TOWUnitManager.h"
 
 // Sets default values
 ATOWBaseUnit::ATOWBaseUnit()
@@ -16,6 +17,10 @@ void ATOWBaseUnit::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	if (ATOWUnitManager* unitManager = ATOWUnitManager::GetUnitManager(this))
+	{
+		ROLE_Authority == Role ? unitManager->AddUnit(this) : false ;
+	}
 }
 
 // Called every frame
@@ -60,7 +65,10 @@ UINT16 ATOWBaseUnit::ApplyDamage(ATOWBaseUnit* damageCauser, UINT16 damageValue,
 
 void ATOWBaseUnit::Death(ATOWBaseUnit* deathCauser)
 {
-
+	if (ATOWUnitManager* unitManager = ATOWUnitManager::GetUnitManager(this))
+	{
+		unitManager->RemoveUnit(this);
+	}
 }
 
 void ATOWBaseUnit::RunBuff()

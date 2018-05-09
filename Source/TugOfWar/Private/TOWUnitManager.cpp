@@ -2,6 +2,10 @@
 
 #include "TOWUnitManager.h"
 #include "TOWBaseUnit.h"
+#include "Character/TOWBuildingBase.h"
+
+#include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 // Sets default values
 ATOWUnitManager::ATOWUnitManager()
@@ -31,7 +35,43 @@ void ATOWUnitManager::Tick(float DeltaTime)
 		for (auto it : unitList)
 		{
 			it->RunBuff();
+			if (ATOWBuildingBase* building = Cast<ATOWBuildingBase>(it))
+			{
+				building->ProduceTick();
+			}
 		}
+	}
+}
+
+void ATOWUnitManager::AddUnit(ATOWBaseUnit* unit)
+{
+	if (unit)
+	{
+		unitList.Add(unit);
+	}
+}
+
+void ATOWUnitManager::RemoveUnit(ATOWBaseUnit* unit)
+{
+	if (unit)
+	{
+		unitList.Remove(unit);
+	}
+}
+
+ATOWUnitManager* ATOWUnitManager::GetUnitManager(AActor* caller)
+{
+	TArray<AActor*> outManager;
+	UGameplayStatics::GetAllActorsOfClass(caller, ATOWUnitManager::StaticClass(), outManager);
+	if (outManager.Num() > 0 && outManager[0])
+	{
+		return Cast<ATOWUnitManager>(outManager[0]);
+	}
+	else
+	{
+		UE_LOG(LogExit , Error, TEXT("Can not find ATOWUnitManager, you should put a ATOWUnitManager to the level."));
+		UGameplayStatics::GetPlayerController(caller, 0)->ConsoleCommand("quit");
+		return nullptr;
 	}
 }
 
