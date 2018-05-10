@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
+#include "TOWBaseUnit.h"
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
@@ -14,7 +15,11 @@ class TUGOFWAR_API ATOWPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
-	
+public:
+
+	ETOWCamp playerCamp = ETOWCamp::ENeutral;
+
+	UINT32 money = 0;
 	
 	
 };
