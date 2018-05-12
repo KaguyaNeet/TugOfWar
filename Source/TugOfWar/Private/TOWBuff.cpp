@@ -3,14 +3,20 @@
 #include "TOWBuff.h"
 #include "TOWBaseUnit.h"
 #include "TOWBuffManager.h"
+#include "TOWGameInstance.h"
+
+#include "Kismet/GameplayStatics.h"
 
 void UTOWBuff::InitBuff(EBuffType buffType_, UINT8 buffKey, UINT8 buffValue_, UINT32 buffLifeTime_)
 {
 	buffType = buffType_;
 	buffLifeTime = buffLifeTime_;
 	buffValue = buffValue_;
-	RunBuffFuncPtr = UTOWBuffManager::GetBuffManager()->GetRunBuffFunc(buffKey);
-	RemoveBuffFuncPtr = UTOWBuffManager::GetBuffManager()->GetRemoveBuffFunc(buffKey);
+	if (UTOWGameInstance* gameInstance = Cast<UTOWGameInstance>(UGameplayStatics::GetGameInstance(this)))
+	{
+		gameInstance->GetBuffManager()->GetRunBuffFunc(buffKey);
+		gameInstance->GetBuffManager()->GetRemoveBuffFunc(buffKey);
+	}
 }
 
 bool UTOWBuff::RunBuff(ATOWBaseUnit* buffOwner)

@@ -48,6 +48,7 @@ void ATOWUnitManager::AddUnit(ATOWBaseUnit* unit)
 	if (unit)
 	{
 		unitList.Add(unit);
+		ETOWCamp::ERed == unit->baseAttribute.unitCamp ? redUnitList.Add(unit) : blueUnitList.Add(unit);
 	}
 }
 
@@ -56,6 +57,7 @@ void ATOWUnitManager::RemoveUnit(ATOWBaseUnit* unit)
 	if (unit)
 	{
 		unitList.Remove(unit);
+		ETOWCamp::ERed == unit->baseAttribute.unitCamp ? redUnitList.Remove(unit) : blueUnitList.Remove(unit);
 	}
 }
 
@@ -69,9 +71,65 @@ ATOWUnitManager* ATOWUnitManager::GetUnitManager(AActor* caller)
 	}
 	else
 	{
-		UE_LOG(LogExit , Error, TEXT("Can not find ATOWUnitManager, you should put a ATOWUnitManager to the level."));
-		UGameplayStatics::GetPlayerController(caller, 0)->ConsoleCommand("quit");
-		return nullptr;
+		return caller->GetWorld()->SpawnActor<ATOWUnitManager>(FVector(0.f, 0.f, 0.f), FRotator(0.f, 0.f, 0.f));
 	}
 }
 
+float ATOWUnitManager::Distance(AActor* a, AActor* b)
+{
+	return FVector::Distance(a->GetActorLocation(), a->GetActorLocation());
+}
+
+ATOWBaseUnit* ATOWUnitManager::GetNearestUnit(class ATOWBaseUnit* caller, const TArray<ATOWBaseUnit*>& list)
+{
+	float tempNearest = FLT_MAX;
+	ATOWBaseUnit* tempNearestUnit = nullptr;
+	for (auto it : list)
+	{
+		if (it != caller)
+		{
+			float temp = Distance(it, caller);
+			temp < tempNearest ? tempNearest = temp, tempNearestUnit = it: false;
+		}
+	}
+	return tempNearestUnit;
+}
+
+TArray<ATOWBaseUnit*> ATOWUnitManager::GetInRangeUnitsNotIncludeSelf(ATOWBaseUnit* caller, float range, const TArray<ATOWBaseUnit*>& list)
+{
+	TArray<ATOWBaseUnit*> tempArray;
+	for (auto it : list)
+	{
+		if (it != caller)
+		{
+			float temp = Distance(it, caller);
+			temp <= range ? tempArray.Add(it) : false;
+		}
+	}
+	return tempArray;
+}
+
+ATOWBaseUnit* ATOWUnitManager::GetNearestFriend(ATOWBaseUnit* caller)
+{
+	return GetNearestUnit(caller, ETOWCamp::ERed == caller->baseAttribute.unitCamp ? redUnitList : blueUnitList);
+}
+
+ATOWBaseUnit* ATOWUnitManager::GetNearestEnemy(ATOWBaseUnit* caller)
+{
+	return GetNearestUnit(caller, ETOWCamp::ERed == caller->baseAttribute.unitCamp ? blueUnitList : redUnitList);
+}
+
+TArray<ATOWBaseUnit*> ATOWUnitManager::GetInRangeFriendsNotIncludeSelf(ATOWBaseUnit* caller, float range)
+{
+	return GetInRangeUnitsNotIncludeSelf(caller, range, ETOWCamp::ERed == caller->baseAttribute.unitCamp ? redUnitList : blueUnitList);
+}
+
+TArray<ATOWBaseUnit*> ATOWUnitManager::GetInRangeEnemies(ATOWBaseUnit* caller, float range)
+{
+	return GetInRangeUnitsNotIncludeSelf(caller, range, ETOWCamp::ERed == caller->baseAttribute.unitCamp ? blueUnitList : redUnitList);
+}
+
+TArray<ATOWBaseUnit*> ATOWUnitManager::GetInRangeUnitsNotIncludeSelf(ATOWBaseUnit* caller, float range)
+{
+	return GetInRangeUnitsNotIncludeSelf(caller, range, unitList);
+}

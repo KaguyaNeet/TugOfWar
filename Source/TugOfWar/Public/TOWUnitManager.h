@@ -28,9 +28,43 @@ public:
 
 	static ATOWUnitManager* GetUnitManager(AActor* caller);
 
+	class ATOWBaseUnit* GetNearestFriend(class ATOWBaseUnit* caller);
+	class ATOWBaseUnit* GetNearestEnemy(class ATOWBaseUnit* caller);
+	TArray<class ATOWBaseUnit*> GetInRangeFriendsNotIncludeSelf(class ATOWBaseUnit* caller, float range);
+	TArray<class ATOWBaseUnit*> GetInRangeEnemies(class ATOWBaseUnit* caller, float range);
+	TArray<class ATOWBaseUnit*> GetInRangeUnitsNotIncludeSelf(class ATOWBaseUnit* caller, float range);
 	
 private:
 	float buffTickCounter = 0;
 
-	TArray<class ATOWBaseUnit*> unitList;
+	UPROPERTY()
+		TArray<class ATOWBaseUnit*> unitList;
+	UPROPERTY()
+		TArray<class ATOWBaseUnit*> redUnitList;
+	UPROPERTY()
+		TArray<class ATOWBaseUnit*> blueUnitList;
+
+private:
+
+	/*
+	 * Get the nearest unit of caller.
+	 * @param caller. caller's ptr.
+	 * @param list. find unit in this list.
+	 * @param ATOWBaseUnit*. return the found unit, can be nullptr.
+	 **/
+	class ATOWBaseUnit* GetNearestUnit(class ATOWBaseUnit* caller, const TArray<class ATOWBaseUnit*>& list);
+
+	/*
+	* Get the units in caller's range, not include caller self.
+	* @param caller. caller's ptr.
+	* @param range. find in this range.
+	* @param list. find unit in this list.
+	* @param TArray<ATOWBaseUnit*>. return the found units, can be null array.
+	**/
+	TArray<class ATOWBaseUnit*> GetInRangeUnitsNotIncludeSelf(class ATOWBaseUnit* caller, float range, const TArray<class ATOWBaseUnit*>& list);
+
+	/*
+	 * Get two actors distance.
+	 **/
+	float Distance(AActor* a, AActor* b);
 };

@@ -21,13 +21,6 @@ UTOWCardManager::UTOWCardManager()
 	}
 }
 
-UTOWCardManager* UTOWCardManager::GetCardManager()
-{
-	static UTOWCardManager* instance = NewObject<UTOWCardManager>();
-	return instance;
-}
-
-
 void UTOWCardManager::InitCard(UTOWCard* card, UINT8 cardKey)
 {
 	FName* cardName = keyMap.Find(cardKey);

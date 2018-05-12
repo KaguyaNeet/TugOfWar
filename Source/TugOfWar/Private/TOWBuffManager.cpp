@@ -11,11 +11,3 @@ UTOWBuffManager::BuffFunc UTOWBuffManager::GetRemoveBuffFunc(UINT8 key)
 {
 	return nullptr;
 }
-
-UTOWBuffManager* UTOWBuffManager::GetBuffManager()
-{
-
-	static UTOWBuffManager* instance = NewObject<UTOWBuffManager>();
-	return instance;
-}
-

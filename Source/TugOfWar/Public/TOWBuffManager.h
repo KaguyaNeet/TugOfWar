@@ -19,7 +19,6 @@ public:
 
 	BuffFunc GetRunBuffFunc(UINT8 key);
 	BuffFunc GetRemoveBuffFunc(UINT8 key);
-	static UTOWBuffManager* GetBuffManager();
 
 private:
 };

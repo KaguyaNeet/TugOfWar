@@ -49,8 +49,6 @@ public:
 public:
 	UTOWCardManager();
 
-	static UTOWCardManager* GetCardManager();
-
 	void InitCard(class UTOWCard* card, UINT8 cardKey);
 	
 	AuroCardFunc GetAuraFunc(ECardName cardName);
