@@ -34,11 +34,7 @@ void ATOWUnitManager::Tick(float DeltaTime)
 		buffTickCounter = 0;
 		for (auto it : unitList)
 		{
-			it->RunBuff();
-			if (ATOWBuildingBase* building = Cast<ATOWBuildingBase>(it))
-			{
-				building->ProduceTick();
-			}
+			it->UnitTick();
 		}
 	}
 }

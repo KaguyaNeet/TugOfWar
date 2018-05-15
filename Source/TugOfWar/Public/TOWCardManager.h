@@ -9,7 +9,7 @@
 UENUM(BlueprintType)
 enum class ECardName : uint8
 {
-	EAura UMETA(DisplayName = "AuraCard"),
+	ETestAura UMETA(DisplayName = "AuraCard"),
 
 };
 
@@ -49,9 +49,19 @@ public:
 public:
 	UTOWCardManager();
 
-	void InitCard(class UTOWCard* card, UINT8 cardKey);
+	static void InitCard(class UTOWCard* card, UINT8 cardKey);
+
+	static void GetCardFunc(ECardType cardType, class ATOWBaseUnit* unit, ECardName cardEnum);
 	
 	AuroCardFunc GetAuraFunc(ECardName cardName);
+	TrenchCardFunc GetTrenchCardFunc(ECardName cardName);
+	DeathWordsCardFunc GetDeathWordsCardFunc(ECardName cardName);
+	UnitSpellCardFunc GetUnitSpellCardFunc(ECardName cardName);
+	AttackEffectCardFunc GetAttackEffectCardFunc(ECardName cardName);
+	ArmsCardFunc GetArmsCardFunc(ECardName cardName);
+	ArmorCardFunc GetArmorCardFunc(ECardName cardName);
+	PlayerCardFunc GetPlayerCardFunc(ECardName cardName);
+	BuildingCardFunc GetBuildingCardFunc(ECardName cardName);
 private:
 	class UDataTable* cardDataTable;
 	TMap<UINT8, FName> keyMap;

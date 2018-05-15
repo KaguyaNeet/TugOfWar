@@ -21,8 +21,10 @@ void ATOWBuildingBase::BeginPlay()
 	}
 }
 
-void ATOWBuildingBase::ProduceTick()
+void ATOWBuildingBase::UnitTick()
 {
+	Super::UnitTick();
+
 	remainProduceTime--;
 	if (0 == remainProduceTime)
 	{

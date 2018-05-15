@@ -4,6 +4,8 @@
 
 //My header files include here
 #include "TOWGameMode.h"
+#include "TOWCardManager.h"
+#include "TOWCard.h"
 
 //UE's header files include here
 #include "Engine/DataTable.h"
@@ -81,7 +83,7 @@ public:
 	virtual UINT16 ApplyDamage(ATOWBaseUnit* damageCauser, UINT16 damageValue, UINT16 damagePenetration, ETOWDamageType damageType);
 	virtual void Death(ATOWBaseUnit* deathCauser);
 
-	void RunBuff();
+	virtual void UnitTick();
 	void AddBuff(class UTOWBuff* buff);
 
 //Public value write here.
@@ -94,6 +96,12 @@ public:
 private:
 	UPROPERTY()
 		TArray<class UTOWBuff*> buffList;
+	UPROPERTY()
+		TArray<FCardInfo> cards;
+
+//Private function write here.
+private:
+	void RunBuff();
 
 protected:
 	// Called when the game starts or when spawned

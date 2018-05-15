@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
+#include "TOWCardManager.h"
 
 #include "CoreMinimal.h"
 #include "TOWBaseUnit.h"
@@ -17,7 +18,7 @@ class TUGOFWAR_API ATOWBuildingBase : public ATOWBaseUnit
 public:
 	virtual void BeginPlay() override;
 
-	void ProduceTick();
+	virtual void UnitTick() override;
 	virtual void Produce(){}
 
 	void Upgrade();
@@ -37,6 +38,8 @@ public:
 
 	UINT16 upgradeCost = 0;
 	UINT8 upgradeTime = 0;
+
+	TArray<UTOWCardManager::BuildingCardFunc> buildingFuncs;
 	
 private:
 	

@@ -2,31 +2,18 @@
 
 #include "TOWCard.h"
 #include "TOWCardManager.h"
-#include "TOWGameInstance.h"
 
 #include "Kismet/GameplayStatics.h"
 
 
 void UTOWCard::InitCard(UINT8 cardKey)
 {
-	if (UTOWGameInstance* gameInstance = Cast<UTOWGameInstance>(UGameplayStatics::GetGameInstance(this)))
-	{
-		gameInstance->GetCardManager()->InitCard(this, cardKey);
-	}
+	UTOWCardManager::InitCard(this, cardKey);
 }
 
 void UTOWCard::Use(class ATOWBaseUnit* unit)
 {
-	if (UTOWGameInstance* gameInstance = Cast<UTOWGameInstance>(UGameplayStatics::GetGameInstance(this)))
-	{
-		switch (cardInfo.cardType)
-		{
-		case ECardType::EAura:
-			gameInstance->GetCardManager()->GetAuraFunc(cardID);
-
-		}
-	}
-
+	UTOWCardManager::GetCardFunc(cardInfo.cardType, unit, cardID);
 }
 
 void UTOWCard::Remove(class ATOWBaseUnit* unit)

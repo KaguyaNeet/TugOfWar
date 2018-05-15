@@ -3,6 +3,7 @@
 #include "TOWBaseUnit.h"
 #include "TOWBuff.h"
 #include "TOWUnitManager.h"
+#include "TOWCard.h"
 
 // Sets default values
 ATOWBaseUnit::ATOWBaseUnit()
@@ -70,6 +71,16 @@ void ATOWBaseUnit::Death(ATOWBaseUnit* deathCauser)
 	}
 }
 
+void ATOWBaseUnit::UnitTick()
+{
+	RunBuff();
+}
+
+void ATOWBaseUnit::AddBuff(class UTOWBuff* buff)
+{
+	buffList.Add(buff);
+}
+
 void ATOWBaseUnit::RunBuff()
 {
 	buffList.Remove(nullptr);
@@ -82,9 +93,3 @@ void ATOWBaseUnit::RunBuff()
 		}
 	}
 }
-
-void ATOWBaseUnit::AddBuff(class UTOWBuff* buff)
-{
-	buffList.Add(buff);
-}
-

@@ -38,7 +38,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = "CardDesc")
 		FCardInfo cardInfo;
 	UPROPERTY(EditAnywhere, Category = "CardDesc")
-		ECardName cardEnum;
+		UINT8 cardEnum;
 
 };
 
