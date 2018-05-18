@@ -2,6 +2,9 @@
 
 #include "TOWGameMode.h"
 
-
+void ATOWGameMode::GameFinish(ETOWCamp failedCamp)
+{
+	
+}
 
 

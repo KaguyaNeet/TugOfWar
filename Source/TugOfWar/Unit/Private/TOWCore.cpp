@@ -2,8 +2,11 @@
 
 #include "TOWCore.h"
 #include "TOWPlayerController.h"
+#include "TOWGameInstance.h"
+#include "TOWGameMode.h"
 
 #include "Public/UObject/ConstructorHelpers.h"
+#include "Kismet/GameplayStatics.h"
 
 ATOWCore::ATOWCore()
 {
@@ -37,5 +40,15 @@ void ATOWCore::Update()
 {
 	buildingLevel++;
 	FCoreInfo currentInfo = *coreInfoTable->FindRow<FCoreInfo>(coreInfoNames[buildingLevel], TEXT(""));
+}
+
+void ATOWCore::Death(ATOWBaseUnit* deathCauser)
+{
+	Super::Death(deathCauser);
+
+	if (ATOWGameMode* gameMode = Cast<ATOWGameMode>(UGameplayStatics::GetGameMode(this)))
+	{
+		gameMode->GameFinish(baseAttribute.unitCamp);
+	}
 }
 

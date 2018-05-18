@@ -3,7 +3,6 @@
 #pragma once
 
 //My header files include here
-#include "TOWGameMode.h"
 #include "TOWCardManager.h"
 #include "TOWCard.h"
 

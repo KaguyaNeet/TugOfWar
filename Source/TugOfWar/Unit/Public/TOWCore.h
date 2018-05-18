@@ -4,7 +4,7 @@
 #include "Engine/DataTable.h"
 
 #include "CoreMinimal.h"
-#include "Character/TOWBuildingBase.h"
+#include "TOWBuildingBase.h"
 #include "TOWCore.generated.h"
 
 USTRUCT()
@@ -39,6 +39,8 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Update() override;
 
+
+	virtual void Death(ATOWBaseUnit* deathCauser) override;
 private:
 
 	

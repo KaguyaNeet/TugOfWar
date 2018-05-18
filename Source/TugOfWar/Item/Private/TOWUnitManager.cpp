@@ -2,7 +2,7 @@
 
 #include "TOWUnitManager.h"
 #include "TOWBaseUnit.h"
-#include "Character/TOWBuildingBase.h"
+#include "TOWBuildingBase.h"
 
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"

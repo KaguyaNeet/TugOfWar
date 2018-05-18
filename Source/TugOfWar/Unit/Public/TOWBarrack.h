@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameModeBase.h"
-#include "TugOfWarGameModeBase.generated.h"
+#include "TOWBuildingBase.h"
+#include "TOWBarrack.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class TUGOFWAR_API ATugOfWarGameModeBase : public AGameModeBase
+class TUGOFWAR_API ATOWBarrack : public ATOWBuildingBase
 {
 	GENERATED_BODY()
 	

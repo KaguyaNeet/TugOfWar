@@ -3,8 +3,8 @@
 #include "TOWCardManager.h"
 #include "TOWCard.h"
 #include "TOWBaseUnit.h"
-#include "Character/TOWCharacter.h"
-#include "Character/TOWBuildingBase.h"
+#include "TOWCharacter.h"
+#include "TOWBuildingBase.h"
 #include "TOWGameInstance.h"
 
 #include "Public/UObject/ConstructorHelpers.h"

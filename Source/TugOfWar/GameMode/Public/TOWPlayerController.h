@@ -14,7 +14,13 @@ UCLASS()
 class TUGOFWAR_API ATOWPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
+
+public:
+
+	virtual void BeginPlay() override;
+
+
 public:
 
 	ETOWCamp playerCamp = ETOWCamp::ENeutral;

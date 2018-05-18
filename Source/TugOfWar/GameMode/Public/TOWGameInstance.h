@@ -18,12 +18,17 @@ public:
 
 	UTOWGameInstance();
 
-	class UTOWBuffManager* GetBuffManager();
-	class UTOWCardManager* GetCardManager();
+	class UTOWBuffManager* GetBuffManager() const;
+	class UTOWCardManager* GetCardManager() const;
+
+	void AddController(class ATOWPlayerController* playerController);
 
 private:
 
 	class UTOWBuffManager* buffManager;
 	class UTOWCardManager* cardManager;
+
+	class ATOWPlayerController* redPlayerController = nullptr;
+	class ATOWPlayerController* bluePlayerController = nullptr;
 	
 };

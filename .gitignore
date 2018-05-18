@@ -12,5 +12,6 @@
 /Content/ParagonSerath/*
 /Content/ParagonMuriel/*
 /Content/ParagonGadget/*
-/Intermediate/*
+/Intermediate/Build/*
+/Intermediate/Config/*
 /Saved/*
