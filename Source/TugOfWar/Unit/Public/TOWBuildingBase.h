@@ -24,6 +24,8 @@ public:
 	void Upgrade();
 	virtual void Update(){}
 
+	virtual bool AddCard(class UTOWCard* card) { return false; }
+
 public:
 	class ATOWPlayerController* owner = nullptr;
 
@@ -36,11 +38,16 @@ public:
 	UPROPERTY(EditAnywhere)
 		UINT8 maxLevel = 0;
 
+	UPROPERTY()
+		TArray<class UTOWCard*> cards;
+
 	UINT16 upgradeCost = 0;
 	UINT8 upgradeTime = 0;
 
 	TArray<UTOWCardManager::BuildingCardFunc> buildingFuncs;
-	
+
 private:
+
+
 	
 };

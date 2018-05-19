@@ -20,6 +20,8 @@ public:
 
 	virtual void BeginPlay() override;
 
+	bool CostMoney(UINT16 value);
+
 
 public:
 

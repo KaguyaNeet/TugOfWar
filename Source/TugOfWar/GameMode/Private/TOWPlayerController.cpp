@@ -9,6 +9,16 @@ void ATOWPlayerController::BeginPlay()
 {
 	if(UTOWGameInstance* gameInstance = Cast<UTOWGameInstance>(UGameplayStatics::GetGameInstance(this)))
 	{
-		
+		gameInstance->AddController(this);
 	}
+}
+
+bool ATOWPlayerController::CostMoney(UINT16 value)
+{
+	if(value <= money)
+	{
+		money -= value;
+		return true;
+	}
+	return false;
 }

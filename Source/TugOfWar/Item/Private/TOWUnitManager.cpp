@@ -28,13 +28,16 @@ void ATOWUnitManager::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	//Run all unit's buff system per second.
-	buffTickCounter += DeltaTime;
-	if (buffTickCounter >= 1.f)
+	if(ROLE_Authority == Role)
 	{
-		buffTickCounter = 0;
-		for (auto it : unitList)
+		buffTickCounter += DeltaTime;
+		if (buffTickCounter >= 1.f)
 		{
-			it->UnitTick();
+			buffTickCounter = 0;
+			for (auto it : unitList)
+			{
+				it->UnitTick();
+			}
 		}
 	}
 }

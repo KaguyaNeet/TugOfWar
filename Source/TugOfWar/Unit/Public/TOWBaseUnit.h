@@ -96,7 +96,7 @@ private:
 	UPROPERTY()
 		TArray<class UTOWBuff*> buffList;
 	UPROPERTY()
-		TArray<FCardInfo> cards;
+		TArray<FCardInfo> cardInfos;
 
 //Private function write here.
 private:

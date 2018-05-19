@@ -18,6 +18,8 @@ class TUGOFWAR_API ATOWCharacter : public ATOWBaseUnit
 public:
 	virtual void UnitTick() override;
 
+	virtual void Init(FUnitBaseAttribute initInfo);
+
 //Write public value here
 public:
 

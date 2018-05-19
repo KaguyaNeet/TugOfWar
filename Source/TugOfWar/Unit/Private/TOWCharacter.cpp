@@ -2,6 +2,11 @@
 
 #include "TOWCharacter.h"
 
+void ATOWCharacter::Init(FUnitBaseAttribute initInfo)
+{
+	baseAttribute = initInfo;
+}
+
 void ATOWCharacter::UnitTick() 
 {
 	Super::UnitTick();

@@ -62,4 +62,5 @@ public:
 	FCardInfo cardInfo;
 	UINT8 key;
 	ECardName cardID;
+	bool isOpen = true;
 };

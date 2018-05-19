@@ -35,9 +35,8 @@ void ATOWBuildingBase::UnitTick()
 
 void ATOWBuildingBase::Upgrade()
 {
-	if (buildingLevel < maxLevel && owner->money - upgradeCost >= 0)
+	if (buildingLevel < maxLevel)
 	{
-		owner->money -= upgradeCost;
-		Update();
+		owner->CostMoney(upgradeCost) ? Update() : false;
 	}
 }
