@@ -11,6 +11,24 @@ ATOWBarrack::ATOWBarrack()
 	spawnArrow = CreateDefaultSubobject<UArrowComponent>(TEXT("SpawnArrow"));
 }
 
+void ATOWBarrack::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (barrackDataTable)
+	{
+		TArray<FName> dataTableRowNames = barrackDataTable->GetRowNames();
+		for(auto it : dataTableRowNames)
+		{
+			FBarrackTable* tempBarrackData = barrackDataTable->FindRow<FBarrackTable>(it, TEXT(""));
+			if(tempBarrackData->barrackType == this->barrackType)
+			{
+				keyMap.Add(tempBarrackData->barrackLevel, it);
+			}
+		}
+	}
+}
+
 void ATOWBarrack::Produce()
 {
 	cards.Remove(nullptr);

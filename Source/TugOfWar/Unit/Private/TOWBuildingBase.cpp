@@ -4,6 +4,7 @@
 #include "TOWPlayerController.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "Engine/DataTable.h"
 
 void ATOWBuildingBase::BeginPlay()
 {

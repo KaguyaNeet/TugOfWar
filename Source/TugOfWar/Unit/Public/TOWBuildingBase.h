@@ -46,6 +46,9 @@ public:
 
 	TArray<UTOWCardManager::BuildingCardFunc> buildingFuncs;
 
+	UPROPERTY(EditAnywhere)
+		class UDataTable* dataTable;
+
 private:
 
 
